@@ -38,6 +38,7 @@ ASCharacter::ASCharacter()
 	// enable crouching
 	GetCharacterMovement()->NavAgentProps.bCanCrouch = true;
 	GetCharacterMovement()->MaxWalkSpeedCrouched = 200.f;
+
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	GetCharacterMovement()->CrouchedHalfHeight = 60.f;
 	GetCharacterMovement()->GravityScale = 1.5f;
@@ -219,7 +220,7 @@ void ASCharacter::OnDeath_Implementation()
 {
 	bDead = true;
 	DetachFromControllerPendingDestroy();
-	
+
 	GetMesh()->SetCollisionProfileName("Ragdoll");
 	
 	// disable movement
@@ -231,7 +232,7 @@ void ASCharacter::OnDeath_Implementation()
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
 
-	SetLifeSpan(1.f);
+	SetLifeSpan(1.5f);
 	if (CurrentWeapon)
 	{
 		CurrentWeapon->StopFire();

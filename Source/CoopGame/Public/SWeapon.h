@@ -85,8 +85,7 @@ protected:
 	void ServerFire();
 	bool ServerFire_Validate() { return true; }
 	void ServerFire_Implementation();
-
-
+	
 	/** the name of the muzzle flash socket */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config", meta = (AllowPrivateAccess = "true"))
 	FName MuzzleSocketName = FName("MuzzleFlashSocket");

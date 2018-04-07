@@ -41,12 +41,11 @@ void USHealthComponent::OnOwnerTakeDamage(AActor* DamagedActor, float Damage, co
 		/** damage is positive and owner is alive  */
 		if (Damage > 0.f && !bDead)
 		{
-			/// TODO WTF ???
 			/** apply damage to non-friendly actors only  */
-			/*if (DamageCauser != DamagedActor && IsFriendly(DamagedActor, DamageCauser->GetOwner()))
+			if (DamageCauser != DamagedActor && IsFriendly(DamagedActor, DamageCauser->GetOwner()))
 			{
 				return;
-			}*/
+			}
 
 			/** update Health  */
 			Health = FMath::Clamp(Health - Damage, 0.f, DefaultHealth);

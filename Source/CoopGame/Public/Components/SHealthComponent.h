@@ -6,10 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "SHealthComponent.generated.h"
 
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_SixParams(FOnHealthChange, USHealthComponent*, SHealthComponent, float, Health, float, HealthDelta, const class UDamageType*, DamageType, class AController*, InstigatedBy, AActor*, DamageCauser);
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(COOP), meta=(BlueprintSpawnableComponent) )
 class COOPGAME_API USHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()

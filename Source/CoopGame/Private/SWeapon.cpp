@@ -112,7 +112,7 @@ void ASWeapon::Fire()
 		MyOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation);
 		FVector ShotDirection = EyeRotation.Vector();
 
-		/** bullet spread not applied to first shot  */
+		/** bullet spread is not intended to apply to first shot  */
 		if (!bFirstShot)
 		{
 			float HalfRad = FMath::DegreesToRadians(BulletSpread);
@@ -135,7 +135,8 @@ void ASWeapon::Fire()
 		FHitResult Hit;
 		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
 		{
-			bFirstShot = false;
+			// start bullet spreads
+			bFirstShot = false; 
 			AActor* HitActor = Hit.GetActor();
 			if (HitActor)
 			{
@@ -163,9 +164,7 @@ void ASWeapon::Fire()
 				{
 					PlayImpactEffect(SurfaceType, Hit.ImpactPoint);
 				}
-
-				PlayImpactEffect(SurfaceType, Hit.ImpactPoint);
-
+				
 				/** update tracer end point  */
 				TracerEndPoint = Hit.ImpactPoint;
 			}
@@ -181,7 +180,6 @@ void ASWeapon::Fire()
 		{
 			PlayFireFX(TracerEndPoint);
 		}
-		PlayFireFX(TracerEndPoint);
 
 		// [Server]
 		if (Role == ROLE_Authority)
@@ -238,6 +236,7 @@ void ASWeapon::StartFire()
 
 void ASWeapon::StopFire()
 {
+	// stop bullet spreads for next first shot
 	bFirstShot = true;
 	GetWorldTimerManager().ClearTimer(FireTimer);
 }
@@ -290,5 +289,7 @@ void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	
 	DOREPLIFETIME(ASWeapon, Ammo);
+
+	/** skip owner to prevent double FX simulation  */
 	DOREPLIFETIME_CONDITION(ASWeapon, HitScanTrace, COND_SkipOwner);
 }

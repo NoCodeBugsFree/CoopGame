@@ -12,11 +12,14 @@ void ASGameStateBase::SetWaveState(EWaveState NewWaveState)
 {
 	if (Role == ROLE_Authority)
 	{
+		/** store the old wave state  */
 		EWaveState OldState = WaveState;
+
+		/** update current wave state  */
 		WaveState = NewWaveState;
 
-		/** server  */
-		OnRep_WaveState(OldState);
+		/** listen server call */ 
+		OnRep_WaveState(OldState); /** send stored old wave state variable */
 	}
 }
 

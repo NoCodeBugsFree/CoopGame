@@ -11,16 +11,16 @@
 UENUM(BlueprintType)
 enum class EWaveState : uint8
 {
-	EW_WaitingToStart			UMETA(DisplayName = "WaitingToStart"),
+	WS_WaitingToStart			UMETA(DisplayName = "WaitingToStart"),
 
-	EW_WaveInProgress			UMETA(DisplayName = "WaveInProgress"),
+	WS_WaveInProgress			UMETA(DisplayName = "WaveInProgress"),
 
 	/** no longer spawning, waiting for players to kill remaining bots  */
-	EW_WaitingToComplete		UMETA(DisplayName = "WaitingToComplete"),
+	WS_WaitingToComplete		UMETA(DisplayName = "WaitingToComplete"),
 
-	EW_GameOver					UMETA(DisplayName = "GameOver"),
+	WS_GameOver					UMETA(DisplayName = "GameOver"),
 
-	EW_WaveComplete				UMETA(DisplayName = "WaveComplete")
+	WS_WaveComplete				UMETA(DisplayName = "WaveComplete")
 };
 
 /**

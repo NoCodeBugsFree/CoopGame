@@ -28,7 +28,6 @@ void USAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		bCrouch = SCharacter->bIsCrouched;
 
 		/** jumping  */
-		// bJump = SCharacter->bWasJumping;
 		bJump = SCharacter->IsJumpedLastFrame();
 
 		/** dead  */

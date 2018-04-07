@@ -104,7 +104,7 @@ private:
 	/** self damage timer  */
 	UPROPERTY()
 	FTimerHandle SelfDamageTimer;
-
+	
 	/** Buddies finder timer  */
 	UPROPERTY()
 	FTimerHandle CheckForBuddiesTimer;

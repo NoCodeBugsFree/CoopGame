@@ -26,6 +26,7 @@ ASTrackerBot::ASTrackerBot()
 
 	/** Health Comp  */
 	HealthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Comp"));
+	HealthComp->SetTeamNumber(255);
 
 	/** mesh  */
 	BotMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bot Mesh"));
@@ -141,7 +142,7 @@ void ASTrackerBot::Tick(float DeltaTime)
 			BotMesh->AddForce(Force, NAME_None, bUseVelocityChange);
 		}
 	}
-
+	
 	if (AudioComponent)
 	{
 		float Volume = FMath::GetMappedRangeValueClamped(FVector2D(10.f, 1000.f), FVector2D(0.f, 2.f), GetVelocity().Size());
@@ -267,7 +268,7 @@ void ASTrackerBot::CheckForBuddies()
 	
 	TArray<AActor*> ActorsToIgnore;
 	ActorsToIgnore.Add(this);
-
+	
 	TArray<AActor*> OutActors;
 	if (UKismetSystemLibrary::SphereOverlapActors(this, GetActorLocation(), BuddiesDetectionRadius, ObjectTypes, ASTrackerBot::StaticClass(), ActorsToIgnore, OutActors))
 	{
@@ -327,7 +328,7 @@ void ASTrackerBot::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAct
 		if(ASCharacter* SCharacter = Cast<ASCharacter>(OtherActor))
 		{
 			/** activate only near the enemy  */
-			if (!USHealthComponent::IsFriendly(OtherActor, this))
+			if ( ! USHealthComponent::IsFriendly(OtherActor, this) )
 			{
 				/** disable collision */
 				SphereCollision->SetCollisionEnabled(ECollisionEnabled::NoCollision);

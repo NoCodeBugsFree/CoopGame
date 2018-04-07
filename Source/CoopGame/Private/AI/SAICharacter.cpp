@@ -20,7 +20,7 @@ ASAICharacter::ASAICharacter()
 	TP_Camera->SetRelativeLocation(FVector(0.f, 0.f, 70.f));
 
 	/*  Health component */
-	HealthComp->SetTeamNumber(1);
+	HealthComp->SetTeamNumber(255);
 
 	/** AI Perception Component  */
 	AIPerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AIPerceptionComponent"));

@@ -35,6 +35,7 @@ void UBTS_SelectTargetPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 				TArray<AActor*> OutActors;
 				AIPerceptionComponent->GetKnownPerceivedActors(UAISense_Sight::StaticClass(), OutActors);
 
+				/** for each known actors try to find closest to this AI  */
 				for (AActor* TestActor : OutActors)
 				{
 					/** whether target actor is friendly for our AI or not ?  */
@@ -49,7 +50,7 @@ void UBTS_SelectTargetPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 					}
 
 					/** if test actor is hostile and alive  */
-					if ( ! bFriendly && ! bDead)
+					if ( ! bFriendly && ! bDead )
 					{
 						/** pick closest actor as best  */
 						float Distance = (AIPawn->GetActorLocation() - TestActor->GetActorLocation()).Size();

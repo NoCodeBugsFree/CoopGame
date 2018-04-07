@@ -66,10 +66,6 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config", meta = (AllowPrivateAccess = "true"))
 	float BaseDamage = 200.f;
 
-	/* duration to apply explosion force to near actors */
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config", meta = (AllowPrivateAccess = "true"))
-	float ExplosionForceDuration = 0.2f;
-
 	/* damage type */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class UDamageType> DamageType;

@@ -17,6 +17,7 @@ void ASAIController::Possess(APawn* Pawn)
 {
 	Super::Possess(Pawn);
 	
+	/** start behavior tree  */
 	if(ASAICharacter* SAICharacter = Cast<ASAICharacter>(Pawn))
 	{
 		UBehaviorTree* BehaviorTree = SAICharacter->GetBehaviorTree();

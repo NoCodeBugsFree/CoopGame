@@ -22,6 +22,7 @@ public:
 	
 	/** returns current score  **/
 	FORCEINLINE float GetScore() const { return Score; }
+
 	/**  returns Exact ping as float (rounded and compressed in replicated Ping) */
 	float GetExactPing() const { return ExactPing; }
 };

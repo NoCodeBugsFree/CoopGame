@@ -30,6 +30,7 @@ ABarrel::ABarrel()
 	ExplosionForce->SetupAttachment(RootComponent);
 	ExplosionForce->Radius = ExplodeRadius;
 	ExplosionForce->bIgnoreOwningActor = true;
+	ExplosionForce->bImpulseVelChange = true;
 	ExplosionForce->ForceStrength = 10000.f;
 	ExplosionForce->bAutoActivate = false;
 	ExplosionForce->ImpulseStrength = 1000.f;
@@ -131,15 +132,7 @@ void ABarrel::OnExplode_Implementation()
 		DrawDebugSphere(GetWorld(), GetActorLocation(), ExplodeRadius, 12, FColor::Green, false, 5.f, 0, 1.f);
 		
 		/** activate explosion force  */
-		ExplosionForce->Activate(true);
 		ExplosionForce->FireImpulse();
-
-		/** deactivate explosion force  */
-		FTimerDelegate DisableExplosionForceDelegate;
-		DisableExplosionForceDelegate.BindLambda([&] { ExplosionForce->Deactivate();  });
-
-		FTimerHandle DisableTimer;
-		GetWorldTimerManager().SetTimer(DisableTimer, DisableExplosionForceDelegate, ExplosionForceDuration, false);
 	}
 }
 

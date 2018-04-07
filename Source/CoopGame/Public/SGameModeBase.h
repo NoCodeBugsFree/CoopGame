@@ -40,6 +40,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaSeconds) override;
+
+	/** Transitions to calls BeginPlay on actors. */
+	virtual void StartPlay() override;
 	
 	/** calls to spawn a single bot  */
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "AAA")
